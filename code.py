@@ -57,3 +57,17 @@ categorical_columns = ['experience_level', 'employment_type', 'job_title',
 encoders = {}
 for col in categorical_columns:
     encoded_df[col], encoders[col] = manual_label_encoding(encoded_df[col])
+    # --- Step 3: Label Encoding ---
+def manual_label_encoding(column):
+    unique_vals = column.unique()
+    mapping = {val: idx for idx, val in enumerate(unique_vals)}
+    return column.map(mapping), mapping
+
+encoded_df = df_filtered.copy()
+categorical_columns = ['experience_level', 'employment_type', 'job_title',
+                       'employee_residence', 'company_location', 'company_size']
+
+encoders = {}
+for col in categorical_columns:
+    encoded_df[col], encoders[col] = manual_label_encoding(encoded_df[col])
+
